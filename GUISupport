@@ -1,0 +1,21 @@
+import tkinter as tk
+from tkinter import filedialog
+
+# Create the main application window
+root = tk.Tk()
+root.title("DLL Tool")
+root.geometry("300x150")
+
+# Function to be called when the "Generate" button is clicked
+def open_file_explorer():
+    # Open the file explorer
+    file_path = filedialog.askopenfilename(title="Select a File")
+    if file_path:
+        print(f"File selected: {file_path}")
+
+# Create a "Generate" button that calls the open_file_explorer function
+generate_button = tk.Button(root, text="Generate", command=open_file_explorer)
+generate_button.pack(pady=30)
+
+# Start the main event loop
+root.mainloop()
