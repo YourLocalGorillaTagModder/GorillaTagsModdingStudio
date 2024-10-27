@@ -1,0 +1,51 @@
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
+
+# Create the form (window)
+$form = New-Object System.Windows.Forms.Form
+$form.Text = "DLL Tool"
+$form.Size = New-Object System.Drawing.Size(400,200)
+$form.StartPosition = "CenterScreen"
+
+# Button: Generate
+$generateButton = New-Object System.Windows.Forms.Button
+$generateButton.Location = New-Object System.Drawing.Point(50, 50)
+$generateButton.Size = New-Object System.Drawing.Size(100, 30)
+$generateButton.Text = "Generate"
+$form.Controls.Add($generateButton)
+
+# Button: Builder
+$builderButton = New-Object System.Windows.Forms.Button
+$builderButton.Location = New-Object System.Drawing.Point(160, 50)
+$builderButton.Size = New-Object System.Drawing.Size(100, 30)
+$builderButton.Text = "Builder"
+$form.Controls.Add($builderButton)
+
+# Button: Close
+$closeButton = New-Object System.Windows.Forms.Button
+$closeButton.Location = New-Object System.Drawing.Point(270, 50)
+$closeButton.Size = New-Object System.Drawing.Size(100, 30)
+$closeButton.Text = "Close"
+$form.Controls.Add($closeButton)
+
+# Event handler for Generate button (add functionality here)
+$generateButton.Add_Click({
+    [System.Windows.Forms.MessageBox]::Show("Generate button clicked!")
+    # You can call the Generate DLL functionality here
+})
+
+# Event handler for Builder button (add functionality here)
+$builderButton.Add_Click({
+    [System.Windows.Forms.MessageBox]::Show("Builder button clicked!")
+    # You can add any "Builder" functionality here
+})
+
+# Event handler for Close button
+$closeButton.Add_Click({
+    $form.Close()
+})
+
+# Show the form
+$form.Topmost = $true
+$form.Add_Shown({ $form.Activate() })
+[void]$form.ShowDialog()
